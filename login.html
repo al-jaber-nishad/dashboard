@@ -1,0 +1,78 @@
+<?php
+require('db_connection.php');
+$msg = "";
+if (isset($_POST['email']) && isset($_POST['password'])) {
+   $email = mysqli_real_escape_string($con, $_POST['email']);
+   $password = mysqli_real_escape_string($con, $_POST['password']);
+   // You can hash the password using md5(password)
+   $admin_res = mysqli_query($con, "select * from admin where email='$email' and password='$password'");
+   $academic_res = mysqli_query($con, "select * from academic where email='$email' and password='$password'");
+   $admin_count = mysqli_num_rows($admin_res);
+   $academic_count = mysqli_num_rows($academic_res);
+   if ($admin_count > 0) {
+      $row = mysqli_fetch_assoc($admin_res);
+      $_SESSION['ROLE'] = $row['role'];
+      $_SESSION['USER_ID'] = $row['id'];
+      $_SESSION['USER_NAME'] = $row['name'];
+      $_SESSION['USER_MAIL'] = $row['email'];
+      header('location:index.php');
+      die();
+   } else if ($academic_count > 0) {
+      $row = mysqli_fetch_assoc($academic_res);
+      $_SESSION['ROLE'] = $row['role'];
+      $_SESSION['USER_ID'] = $row['id'];
+      $_SESSION['USER_NAME'] = $row['name'];
+      $_SESSION['USER_MAIL'] = $row['email'];
+      header('location:index.php');
+      die();
+   } else {
+      $msg = "Please enter correct login details";
+   }
+}
+?>
+<!doctype html>
+<html class="no-js" lang="">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Login Page</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Fav Icon -->
+   <link rel="icon" href="images/nstu-logo.png" type="image/gif" sizes="16x16">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body id="page-top">
+
+   <!-- Body -->
+   <div class="container">
+      <div class="result_msg"><?php echo $msg ?></div>
+      <div class="row justify-content-center mb-3">
+         <div class="mt-4 pt-4 pl-2 pr-3 text-justify">
+            <form class="form shadow mt-3 p-5" method="POST">
+               <div class="col-form-label text-center pb-4">
+                  <h4>Log in to<br>NSTU BUS TRACKER</h4>
+               </div>
+               <div class="form-group">
+                  <input type="email" class="form-control" name="email" placeholder="Enter You Email" autofocus required>
+               </div>
+               <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+               </div>
+               <button type="submit" class="btn btn-success btn-block">Sign In</button>
+
+               <div class="sign-up">
+                  Not Signed In? <a href="sign-up.php">Sign Up here</a>
+               </div>
+            </form>
+
+         </div>
+      </div>
+   </div>
+
+</body>
+
+</html>

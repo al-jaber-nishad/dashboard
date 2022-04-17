@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Side Bar Components */
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 215px;
+  background-color: #11101d;
+  transition: all 0.5s ease;
+  /* pointer-events: none; */
+}
+.sidebar.inactive{
+  width: 70px;
+  /* pointer-events: none; */
+
+}
+.sidebar .logo-content .logo{
+  color: #fff;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  pointer-events: none;
+  margin-left: 15px;
+}
+.sidebar.inactive .logo-content .logo{
+  opacity: 0;
+  pointer-events: none;
+}
+.logo-content .logo .title{
+  padding-right: 50px;
+}
+.logo-content .logo i{
+  font-size: 28px;
+  margin-right: 5px;
+}
+.sidebar.inactive .logo-content .logo i{
+  align-items: center;
+  text-align: center;
+}
+.logo-content .logo .logo-name{
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  position: static;
+}
+.sidebar .logo-content #toggle-btn{
+  color: #fff;
+  position: absolute;
+  left: 90%;
+  top: 9px;
+  font-size: 40px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 80px;
+  transform: translate(-50%);
+}
+.sidebar.inactive .logo-content #toggle-btn{
+  left: 50%;
+}
+.logo-content #toggle-btn:hover{
+  cursor: pointer;
+}
+.sidebar ul{
+  margin-top: 50px;
+} 
+.sidebar ul li{
+  position: relative;
+  height: 40px;
+  width: 100%;
+  list-style: none;
+}
+
+.sidebar ul li a{
+  position: relative;
+  color: #fff;
+  display: flex;
+  margin-left: 10px;
+  margin-right: 12px;
+  text-decoration: none;
+  border-radius: 3px;
+  align-items: center;
+  text-align: center;
+  padding-left: 12px;
+  transition: all 0.5s ease;
+  white-space: nowrap;
+  font-size: 16px;
+}
+.sidebar.inactive ul li a{
+  font-size: 22px;
+}
+.sidebar ul li .tooltip{
+  position: absolute;
+  left: 130px;
+  top: 0px;
+  transform: translate(-50%);
+  border-radius: 6px;
+  height: 35px;
+  width: 122px;
+  background: #11101d;
+  color: #fff;
+  line-height: 35px;
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+  z-index: 5;
+}
+.sidebar.inactive ul li:hover .tooltip{
+  transition: all 0.5s ease;
+  opacity: 1;
+  top: 30%;
+  transform: translate(-50%);
+  z-index: 5;
+}
+.sidebar .links-name{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.1s ease;
+}
+.sidebar.inactive .links-name{
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar ul li:hover a{
+  background-color: #fff;
+  color: #11101d;
+}
+.sidebar ul li a i{
+  height: 40px;
+  margin-right: 7px;
+  line-height: 40px;
+  text-align: center;
+  align-items: center;
+}
+/* .sidebar.inactive ul li .tooltip{
+  display: none;
+} */
+
+.sidebar .profile-content{
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  background-color: #171627;
+  padding: 8px 0;
+}
+.sidebar .profile-content .profile{
+  position: relative;
+  padding: 10px 6px;
+  height: 60px;
+}
+.sidebar .profile-content .profile .profile-details a{
+  text-decoration: none;
+  color: #fff;
+}
+.sidebar.inactive .profile-details .name-job{
+  display: none;
+}
+.sidebar.inactive .profile-content .profile{
+  height: 50px;
+  padding: 0;
+}
+
+
+/* Main Contents */
+.main-content{
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 240px);
+  left: 240px;
+  margin: 20px;
+  transition: all 0.5s ease;
+}
+.sidebar.inactive ~ .main-content{
+  width: calc(100% - 80px);
+  left: 70px;
+}
+
+
+/* Map/index Page  */
+.main-body{
+  overflow: auto;
+  width: 95%;
+}
+
+.main-body .header{
+  text-align: center;
+  font-weight: 400;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 10px;
+}
+.map-figure iframe{
+ margin: 0 10px;
+}
+
+
+/* Add Schedule Page  */
+
+
+
+/* Schedule Page  */
+.table-body h5{
+  font-family: 'Lato', sans-serif;
+}
+
+
+.table{
+  text-align: center;
+  margin-right: 10px;
+  overflow: auto;
+}
+
+
+/* Log In page  */
+
+#page-top{
+  background-color: #171627;
+  color: #fff;
+}
+
+.sign-up{
+  margin-top: 10px;
+}
+
+/* Sign Up Page  */
+.login-page{
+  margin-top: 10px;
+}
+
+
+/* Form Related Sections  */
+.add-form{
+  /* max-width: 50%s; */
+}
+
+
+/* Box Contents */
+
+.box-content{
+  height: 100%;
+  width: 90%;
+  background-color: rgb(227, 227, 227);
+  padding: 30px;
+}

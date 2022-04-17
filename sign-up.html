@@ -1,0 +1,74 @@
+<?php
+require('db_connection.php');
+$msg = "";
+if (isset($_POST['submit'])) {
+  $name = mysqli_real_escape_string($con, $_POST['name']);
+  $email = mysqli_real_escape_string($con, $_POST['email']);
+  $password = mysqli_real_escape_string($con, $_POST['password']);
+  $c_password = mysqli_real_escape_string($con, $_POST['c_password']);
+
+  if ($password == $c_password) {
+    $sql = "insert into academic(name, email, password, role) values('$name', '$email', '$password', '2')";
+
+    if (mysqli_query($con, $sql)) {
+      $msg = "Succesful";
+      header('location: login.php');
+    } else {
+      $msg = "Error";
+    }
+  } else {
+    $msg = 'Both Passwords are not same!';
+  }
+}
+?>
+<!doctype html>
+<html class="no-js" lang="">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sign Up Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fav Icon -->
+  <link rel="icon" href="images/nstu-logo.png" type="image/gif" sizes="16x16">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body id="page-top">
+
+  <!-- Body -->
+  <div class="container">
+
+    <div class="row justify-content-center mb-3">
+      <div class="mt-4 pt-4 pl-2 pr-3 text-justify">
+
+        <form class="form shadow mt-3 p-5" method="POST">
+          <div class="col-form-label text-center pb-4">
+            <h4>Sign Up for<br>NSTU BUS TRACKER</h4>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Enter You Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Enter You Email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="c_password" placeholder="Confirm Password" required>
+          </div>
+          </span>
+          <button type="submit" name="submit" value="submit" class="btn btn-success btn-block">Sign In</button>
+          <div class="result_msg"><?php echo $msg ?></div>
+          <div class="login-page">Go Back to <a href="login.php">Log In</a> Page</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
